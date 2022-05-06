@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -7,23 +8,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
+  String url = 'https://bilibili.com';
   
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many tim:',
-            ),
-            Row(children: const <Widget>[
-              Text('1'),
-              Text('2'),
-            ])
-          ],
-        ),
+        child: WebView(
+          initialUrl: url,
+          javascriptMode: JavascriptMode.unrestricted,
+        )
       );
   }
 }
