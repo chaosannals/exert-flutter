@@ -45,3 +45,8 @@ flutter:
 ```
 
 Windows 下调试需要开启 开发人员模式。
+
+```bash
+# 可查看调试信息
+flutter run -d windows -v
+```
