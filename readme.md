@@ -21,3 +21,10 @@ SDK Manager 找到 Android SDK 》 SDK Tools 》 Android SDK Command-line Tools(
 
 注：安装 Android Studio 后，需要打开 Android SDK 的平台相关工具，找到 Android SDK 》 SDK Tools 》 Android SDK Platform-Tools
 
+注：3.0.0 - 3.0.1 出现不兼容 VS 的情况，3.0.3 就不会。如果出现类似情况，回退版本或者更新版本。
+
+代理
+```pwsh
+$env:HTTP_PROXY="http://127.0.0.1:1088"
+$env:HTTPS_PROXY="https://127.0.0.1:1088"
+```
