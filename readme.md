@@ -1,5 +1,12 @@
 # exert-flutter
 
+国内镜像
+
+```bash
+export PUB_HOSTED_URL=https://pub.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+```
+
 ## windows 下安装
 
 参考 [官网](https://flutter.dev/docs/get-started/install)
@@ -27,4 +34,29 @@ SDK Manager 找到 Android SDK 》 SDK Tools 》 Android SDK Command-line Tools(
 ```pwsh
 $env:HTTP_PROXY="http://127.0.0.1:1088"
 $env:HTTPS_PROXY="https://127.0.0.1:1088"
+```
+
+ [插件网](https://pub.dev)
+
+## 常用命令
+
+```bash
+# 更新
+flutter upgrade
+
+# 创建项目
+flutter create app_name
+```
+
+```bash
+# 查看项目支持设备
+flutter devices
+
+# 执行
+flutter run
+```
+
+```bash
+# 添加库 dartssh2
+flutter pub add dartssh2
 ```
