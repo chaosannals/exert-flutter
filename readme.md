@@ -7,6 +7,40 @@ export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 ```
 
+[安卓 gradle 阿里云镜像](https://developer.aliyun.com/mvn/guide)
+
+```gradle
+buildscript {
+    //...
+    repositories {
+        // google()
+        // mavenCentral()
+
+        // 阿里镜像
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    }
+    //...
+}
+
+allprojects {
+    repositories {
+        // google()
+        // mavenCentral()
+
+        // 阿里镜像
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    }
+}
+```
+
 ## windows 下安装
 
 参考 [官网](https://flutter.dev/docs/get-started/install)

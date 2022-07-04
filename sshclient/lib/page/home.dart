@@ -14,9 +14,9 @@ class MyHomePage extends StatefulWidget {
 //
 class _MyHomePageState extends State<MyHomePage> {
   final pages = [
-    PanePage(),
-    GistPage(),
-    ConfPage(),
+    const PanePage(),
+    const GistPage(),
+    const ConfPage(),
   ];
   int currentPage = 0;
 
