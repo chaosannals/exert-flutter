@@ -93,4 +93,7 @@ flutter run
 ```bash
 # 添加库 dartssh2
 flutter pub add dartssh2
+
+# 更新库
+flutter pub update
 ```
