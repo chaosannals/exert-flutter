@@ -82,7 +82,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `ff_config` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tag` TEXT NOT NULL, `content` TEXT NOT NULL, `create_at` TEXT NOT NULL, `update_at` TEXT)');
+            'CREATE TABLE IF NOT EXISTS `ff_config` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `tag` TEXT, `host` TEXT NOT NULL, `port` TEXT NOT NULL, `account` TEXT NOT NULL, `password` TEXT NOT NULL, `create_at` TEXT NOT NULL, `update_at` TEXT)');
         await database.execute(
             'CREATE UNIQUE INDEX `index_ff_config_tag` ON `ff_config` (`tag`)');
 
@@ -107,7 +107,10 @@ class _$ConfigDao extends ConfigDao {
             (ConfigEntity item) => <String, Object?>{
                   'id': item.id,
                   'tag': item.tag,
-                  'content': item.value,
+                  'host': item.host,
+                  'port': item.port,
+                  'account': item.account,
+                  'password': item.password,
                   'create_at': item.createAt,
                   'update_at': item.updateAt
                 }),
@@ -118,7 +121,10 @@ class _$ConfigDao extends ConfigDao {
             (ConfigEntity item) => <String, Object?>{
                   'id': item.id,
                   'tag': item.tag,
-                  'content': item.value,
+                  'host': item.host,
+                  'port': item.port,
+                  'account': item.account,
+                  'password': item.password,
                   'create_at': item.createAt,
                   'update_at': item.updateAt
                 });
@@ -136,8 +142,12 @@ class _$ConfigDao extends ConfigDao {
   @override
   Future<List<ConfigEntity>> findAllConfigs() async {
     return _queryAdapter.queryList('SELECT * FROM ff_config',
-        mapper: (Map<String, Object?> row) => ConfigEntity(
-            row['id'] as int, row['tag'] as String, row['content'] as String,
+        mapper: (Map<String, Object?> row) => ConfigEntity(row['id'] as int,
+            tag: row['tag'] as String?,
+            host: row['host'] as String?,
+            port: row['port'] as String?,
+            account: row['account'] as String?,
+            password: row['password'] as String?,
             createAt: row['create_at'] as String?,
             updateAt: row['update_at'] as String?));
   }
@@ -145,8 +155,12 @@ class _$ConfigDao extends ConfigDao {
   @override
   Future<ConfigEntity?> findConfigById(int id) async {
     return _queryAdapter.query('SELECT * FROM ff_config WHERE id = ?1',
-        mapper: (Map<String, Object?> row) => ConfigEntity(
-            row['id'] as int, row['tag'] as String, row['content'] as String,
+        mapper: (Map<String, Object?> row) => ConfigEntity(row['id'] as int,
+            tag: row['tag'] as String?,
+            host: row['host'] as String?,
+            port: row['port'] as String?,
+            account: row['account'] as String?,
+            password: row['password'] as String?,
             createAt: row['create_at'] as String?,
             updateAt: row['update_at'] as String?),
         arguments: [id]);
@@ -155,8 +169,12 @@ class _$ConfigDao extends ConfigDao {
   @override
   Future<ConfigEntity?> findConfigByTag(String tag) async {
     return _queryAdapter.query('SELECT * FROM ff_config WHERE tag = ?1',
-        mapper: (Map<String, Object?> row) => ConfigEntity(
-            row['id'] as int, row['tag'] as String, row['content'] as String,
+        mapper: (Map<String, Object?> row) => ConfigEntity(row['id'] as int,
+            tag: row['tag'] as String?,
+            host: row['host'] as String?,
+            port: row['port'] as String?,
+            account: row['account'] as String?,
+            password: row['password'] as String?,
             createAt: row['create_at'] as String?,
             updateAt: row['update_at'] as String?),
         arguments: [tag]);

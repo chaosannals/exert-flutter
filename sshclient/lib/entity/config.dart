@@ -1,5 +1,4 @@
 import 'package:floor/floor.dart';
-import 'package:flutter/cupertino.dart';
 
 @Entity(
   tableName: 'ff_config',
@@ -15,23 +14,40 @@ class ConfigEntity {
   final int id;
 
   @ColumnInfo(name: 'tag')
-  final String tag;
+  String? tag;
 
-  @ColumnInfo(name: 'content')
-  final String value;
+  @ColumnInfo(name: 'host')
+  String host;
+
+  @ColumnInfo(name: 'port')
+  String port;
+
+  @ColumnInfo(name: 'account')
+  String account;
+
+  @ColumnInfo(name: 'password')
+  String password;
 
   @ColumnInfo(name: 'create_at')
   final String createAt;
 
   @ColumnInfo(name: 'update_at')
-  final String? updateAt;
+  String? updateAt;
 
   ConfigEntity(
-    this.id,
-    this.tag,
-    this.value, {
+    this.id, {
+    String? tag,
+    String? host,
+    String? port,
+    String? account,
+    String? password,
     String? createAt,
     String? updateAt,
-  })  : createAt = createAt ?? DateTime.now().toString(),
-        updateAt = updateAt ?? createAt ?? DateTime.now().toString();
+  })  : tag = tag,
+        host = host ?? '',
+        port = port ?? '',
+        account = account ?? '',
+        password = password ?? '',
+        createAt = createAt ?? DateTime.now().toString(),
+        updateAt = updateAt ?? createAt;
 }
