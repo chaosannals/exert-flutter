@@ -19,36 +19,48 @@ class _MyHomePageState extends State<MyHomePage> {
     const ConfPage(),
   ];
   int currentPage = 0;
+  DateTime? lastPopAt;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: pages[currentPage],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentPage,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '面板',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.star),
-            label: '概览',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: '设置',
-          ),
-        ],
-        onTap: (index) => {
-          if (index != currentPage)
-            {
-              setState(() => {currentPage = index})
-            }
-        },
+    return WillPopScope(
+      onWillPop: () async {
+        if (lastPopAt == null ||
+            DateTime.now().difference(lastPopAt!) >
+                const Duration(seconds: 1)) {
+          lastPopAt = DateTime.now();
+          return false;
+        }
+        return true;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: pages[currentPage],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: currentPage,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: '面板',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.star),
+              label: '概览',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: '设置',
+            ),
+          ],
+          onTap: (index) => {
+            if (index != currentPage)
+              {
+                setState(() => {currentPage = index})
+              }
+          },
+        ),
       ),
     );
   }

@@ -45,6 +45,35 @@ class _ConfPageState extends State<ConfPage> {
     await configDao.updateConfig(config);
   }
 
+  Future<int?> showClearDialog() {
+    return showDialog<int>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("提示"),
+          content: const Text("您确定要删除当前文件吗?"),
+          actions: <Widget>[
+            TextButton(
+              child: const Text("取消"),
+              onPressed: () => Navigator.of(context).pop(0), // 关闭对话框
+            ),
+            TextButton(
+              child: const Text("清空内容"),
+              onPressed: () => Navigator.of(context).pop(1), // 关闭对话框
+            ),
+            TextButton(
+              child: const Text("删除保存"),
+              onPressed: () {
+                //关闭对话框并返回true
+                Navigator.of(context).pop(2);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -118,82 +147,103 @@ class _ConfPageState extends State<ConfPage> {
             children: <Widget>[
               Expanded(
                 flex: 1,
-                child: TextButton(
-                  onPressed: null,
-                  style: ButtonStyle(
-                    textStyle: MaterialStateProperty.all(
-                      const TextStyle(
-                        fontSize: 20,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    // gradient: LinearGradient(colors: [Colors.grey, Colors.grey.shade700]), //背景渐变
+                    borderRadius: BorderRadius.circular(3.0), //3像素圆角
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black54,
+                          offset: Offset(1.0, 1.0),
+                          blurRadius: 4.0)
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 4),
+                    child: TextButton(
+                      onPressed: () async {
+                        var r = await showClearDialog();
+                        if (r! >= 1) {
+                          hostController.text = '';
+                          portController.text = '';
+                          accountController.text = '';
+                          passwordController.text = '';
+                        }
+                        if (r == 2) {
+                          await saveConfig();
+                        }
+                      },
+                      style: ButtonStyle(
+                        textStyle: MaterialStateProperty.all(
+                          const TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                        foregroundColor:
+                            MaterialStateProperty.resolveWith((states) {
+                          return states.contains(MaterialState.pressed)
+                              ? Colors.white
+                              : Colors.black;
+                        }),
+                        backgroundColor:
+                            MaterialStateProperty.resolveWith((states) {
+                          return states.contains(MaterialState.pressed)
+                              ? Colors.blue
+                              : Colors.grey;
+                        }),
                       ),
-                    ),
-                    foregroundColor: MaterialStateProperty.all(
-                      Colors.blue,
-                    ),
-                    backgroundColor: MaterialStateProperty.all(
-                      Colors.grey,
+                      child: const Text('清空'),
                     ),
                   ),
-                  // style: TextButton.styleFrom(
-                  //   textStyle: const TextStyle(
-                  //     fontSize: 20,
-                  //   ),
-                  //   onSurface: Colors.blue,
-                  //   backgroundColor: Colors.grey,
-                  // ),
-                  child: const Text('清空'),
                 ),
               ),
               Expanded(
                 flex: 1,
-                child: TextButton(
-                  onPressed: () async {
-                    print('pressed');
-                    await saveConfig();
-                  },
-                  style: ButtonStyle(
-                    textStyle: MaterialStateProperty.all(
-                      const TextStyle(
-                        fontSize: 20,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    // gradient: LinearGradient(colors: [Colors.grey, Colors.grey.shade700]), //背景渐变
+                    borderRadius: BorderRadius.circular(3.0), //3像素圆角
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Colors.black54,
+                          offset: Offset(1.0, 1.0),
+                          blurRadius: 4.0)
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 4),
+                    child: TextButton(
+                      onPressed: () async {
+                        print('pressed');
+                        await saveConfig();
+                      },
+                      style: ButtonStyle(
+                        textStyle: MaterialStateProperty.all(
+                          const TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                        foregroundColor:
+                            MaterialStateProperty.resolveWith((status) {
+                          return status.contains(MaterialState.pressed)
+                              ? Colors.grey
+                              : Colors.white;
+                        }),
+                        backgroundColor:
+                            MaterialStateProperty.resolveWith((status) {
+                          return status.contains(MaterialState.pressed)
+                              ? Colors.lightBlue
+                              : Colors.blue;
+                        }),
                       ),
-                    ),
-                    foregroundColor: MaterialStateProperty.all(
-                      Colors.white,
-                    ),
-                    backgroundColor: MaterialStateProperty.all(
-                      Colors.blue,
+                      child: const Text('保存'),
                     ),
                   ),
-                  child: const Text('保存'),
                 ),
               ),
             ],
           ),
         ),
-        // ClipRRect(
-        //   borderRadius: BorderRadius.circular(2),
-        //   child: Stack(children: <Widget>[
-        //     Positioned.fill(
-        //       child: Container(
-        //         decoration: const BoxDecoration(
-        //           gradient: LinearGradient(colors: <Color>[
-        //             Color(0x3399FFFF),
-        //             Color(0xFF1976D2),
-        //             Color(0xFF42A5F5),
-        //           ]),
-        //         ),
-        //       ),
-        //     ),
-        //     TextButton(
-        //       style: TextButton.styleFrom(
-        //         textStyle: const TextStyle(
-        //           fontSize: 20,
-        //         ),
-        //       ),
-        //       onPressed: null,
-        //       child: const Text('保存'),
-        //     ),
-        //   ]),
-        // ),
       ],
     );
   }
