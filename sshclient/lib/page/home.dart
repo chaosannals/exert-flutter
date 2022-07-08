@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const SizedBox(), //中间位置空出
               IconButton(
-                icon: Icon(Icons.business),
+                icon: const Icon(Icons.business),
                 onPressed: () {
                   if (2 != currentPage) {
                     setState(() => {currentPage = 2});
