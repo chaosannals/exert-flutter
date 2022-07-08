@@ -38,28 +38,41 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: pages[currentPage],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: currentPage,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: '面板',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.star),
-              label: '概览',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: '设置',
-            ),
-          ],
-          onTap: (index) => {
-            if (index != currentPage)
-              {
-                setState(() => {currentPage = index})
-              }
+        floatingActionButton: FloatingActionButton(
+          //悬浮按钮
+          child: const Icon(Icons.home),
+          onPressed: () {
+            if (1 != currentPage) {
+              setState(() => {currentPage = 1});
+            }
           },
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.white,
+          shape: const CircularNotchedRectangle(), // 底部导航栏打一个圆形的洞
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround, //均分底部导航栏横向空间
+            children: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.star),
+                onPressed: () {
+                  if (0 != currentPage) {
+                    setState(() => {currentPage = 0});
+                  }
+                },
+              ),
+              const SizedBox(), //中间位置空出
+              IconButton(
+                icon: Icon(Icons.business),
+                onPressed: () {
+                  if (2 != currentPage) {
+                    setState(() => {currentPage = 2});
+                  }
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

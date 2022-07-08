@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sshclient/database.dart';
 import 'package:sshclient/entity/config.dart';
+import 'package:sshclient/util/config.dart';
 
 class ConfPage extends StatefulWidget {
   const ConfPage({Key? key}) : super(key: key);
@@ -16,21 +17,15 @@ class _ConfPageState extends State<ConfPage> {
   final accountController = TextEditingController();
   final passwordController = TextEditingController();
 
-  void loadConfig() async {
-    final db = await $FloorAppDatabase.databaseBuilder('sshclient.db').build();
-    final configDao = db.configDao;
-
-    final config = await configDao.findConfigById(1);
-    if (config == null) {
-      await configDao.insertConfig(ConfigEntity(1));
-    } else {
-      hostController.text = config.host;
-      portController.text = config.port;
-      accountController.text = config.account;
-      passwordController.text = config.password;
-    }
+  Future<ConfigEntity?> loadConfig() async {
+    final config = await getConfig();
+    hostController.text = config.host;
+    portController.text = config.port;
+    accountController.text = config.account;
+    passwordController.text = config.password;
     print("init db");
     print(config);
+    return config;
   }
 
   Future<void> saveConfig() async {
