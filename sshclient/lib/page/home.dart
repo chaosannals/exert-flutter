@@ -14,12 +14,13 @@ class MyHomePage extends StatefulWidget {
 //
 class _MyHomePageState extends State<MyHomePage> {
   final pages = [
-    const PanePage(),
-    const GistPage(),
-    const ConfPage(),
+    const PanePage(key: PageStorageKey<String>('pagePane')),
+    const GistPage(key: PageStorageKey<String>('pageGist')),
+    const ConfPage(key: PageStorageKey<String>('pageConf')),
   ];
   int currentPage = 0;
   DateTime? lastPopAt;
+  final PageStorageBucket _bucket = PageStorageBucket();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,10 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: pages[currentPage],
+        body: PageStorage(
+          bucket: _bucket,
+          child: pages[currentPage],
+        ),
         floatingActionButton: FloatingActionButton(
           //悬浮按钮
           child: const Icon(Icons.home),

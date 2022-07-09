@@ -15,7 +15,11 @@ import 'package:sshclient/common.dart';
 T? _ambiguate<T>(T? value) => value;
 
 class CameraExampleHome extends StatefulWidget {
-  const CameraExampleHome({Key? key}) : super(key: key);
+  final ValueChanged<bool>? _onBack;
+
+  const CameraExampleHome({Key? key, ValueChanged<bool>? onBack})
+      : _onBack = onBack,
+        super(key: key);
 
   @override
   State<CameraExampleHome> createState() {
@@ -609,6 +613,18 @@ class _CameraExampleHomeState extends State<CameraExampleHome>
         );
       }
     }
+
+    toggles.add(SizedBox(
+      width: 90.0,
+      child: IconButton(
+        icon: const Icon(Icons.back_hand),
+        onPressed: () => {
+          if (widget._onBack != null) {
+            widget._onBack!(true)
+          }
+        },
+      ),
+    ));
 
     return Row(children: toggles);
   }

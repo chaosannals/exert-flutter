@@ -8,16 +8,38 @@ class GistPage extends StatefulWidget {
   State<GistPage> createState() => _GistPageState();
 }
 
-class _GistPageState extends State<GistPage> {
+class _GistPageStorage {
   var isCamera = false;
+}
+
+class _GistPageState extends State<GistPage> {
+  var _storage = _GistPageStorage();
+
+  void switchCamera(bool v) {
+    setState(() {
+      _storage.isCamera = v;
+    });
+    PageStorage.of(context)?.writeState(context, _storage);
+  }
+
+  @override
+  void didChangeDependencies() {
+    var ps = PageStorage.of(context)?.readState(context);
+    _storage = ps ?? _GistPageStorage();
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       height: double.infinity,
-      child: isCamera
-          ? const CameraExampleHome()
+      child: _storage.isCamera
+          ? CameraExampleHome(
+              onBack: (v) {
+                switchCamera(false);
+              },
+            )
           : Wrap(
               alignment: WrapAlignment.center,
               //runAlignment: WrapAlignment.center,
@@ -51,9 +73,7 @@ class _GistPageState extends State<GistPage> {
                             size: 50,
                           ),
                           onPressed: () {
-                            setState(() {
-                              isCamera = true;
-                            });
+                            switchCamera(true);
                           },
                         ),
                       ),
@@ -84,7 +104,7 @@ class _GistPageState extends State<GistPage> {
                             }),
                           ),
                           child: const Icon(
-                            Icons.camera,
+                            Icons.star,
                             size: 50,
                           ),
                           onPressed: () {},
@@ -117,7 +137,7 @@ class _GistPageState extends State<GistPage> {
                             }),
                           ),
                           child: const Icon(
-                            Icons.camera,
+                            Icons.star,
                             size: 50,
                           ),
                           onPressed: () {},
@@ -150,7 +170,7 @@ class _GistPageState extends State<GistPage> {
                             }),
                           ),
                           child: const Icon(
-                            Icons.camera,
+                            Icons.star,
                             size: 50,
                           ),
                           onPressed: () {},
@@ -183,7 +203,7 @@ class _GistPageState extends State<GistPage> {
                             }),
                           ),
                           child: const Icon(
-                            Icons.camera,
+                            Icons.star,
                             size: 50,
                           ),
                           onPressed: () {},
@@ -216,7 +236,7 @@ class _GistPageState extends State<GistPage> {
                             }),
                           ),
                           child: const Icon(
-                            Icons.camera,
+                            Icons.star,
                             size: 50,
                           ),
                           onPressed: () {},
@@ -249,7 +269,7 @@ class _GistPageState extends State<GistPage> {
                             }),
                           ),
                           child: const Icon(
-                            Icons.camera,
+                            Icons.star,
                             size: 50,
                           ),
                           onPressed: () {},
@@ -282,7 +302,7 @@ class _GistPageState extends State<GistPage> {
                             }),
                           ),
                           child: const Icon(
-                            Icons.camera,
+                            Icons.star,
                             size: 50,
                           ),
                           onPressed: () {},
@@ -315,7 +335,7 @@ class _GistPageState extends State<GistPage> {
                             }),
                           ),
                           child: const Icon(
-                            Icons.camera,
+                            Icons.star,
                             size: 50,
                           ),
                           onPressed: () {},
