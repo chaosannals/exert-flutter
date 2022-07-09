@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sshclient/page/home.dart';
+import 'package:sshclient/common.dart';
 
-void main() {
+Future<void> main() async {
+  await Global.init();
   runApp(const MyApp());
 }
 

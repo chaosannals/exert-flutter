@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sshclient/page/tool/camera.dart';
 
 class GistPage extends StatefulWidget {
   const GistPage({Key? key}) : super(key: key);
@@ -8,315 +9,323 @@ class GistPage extends StatefulWidget {
 }
 
 class _GistPageState extends State<GistPage> {
+  var isCamera = false;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       height: double.infinity,
-      child: Wrap(
-        alignment: WrapAlignment.center,
-        //runAlignment: WrapAlignment.center,
-        //crossAxisAlignment: WrapCrossAlignment.center,
-        children: [
-          FractionallySizedBox(
-            widthFactor: 0.33,
-            child: AspectRatio(
-              aspectRatio: 1.0,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: TextButton(
-                    style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.grey
-                            : Colors.white;
-                      }),
-                      backgroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.lightBlue
-                            : Colors.blue;
-                      }),
+      child: isCamera
+          ? const CameraExampleHome()
+          : Wrap(
+              alignment: WrapAlignment.center,
+              //runAlignment: WrapAlignment.center,
+              //crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                FractionallySizedBox(
+                  widthFactor: 0.33,
+                  child: AspectRatio(
+                    aspectRatio: 1.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: TextButton(
+                          style: ButtonStyle(
+                            foregroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.grey
+                                  : Colors.white;
+                            }),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.lightBlue
+                                  : Colors.blue;
+                            }),
+                          ),
+                          child: const Icon(
+                            Icons.camera,
+                            size: 50,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              isCamera = true;
+                            });
+                          },
+                        ),
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.camera,
-                      size: 50,
-                    ),
-                    onPressed: () {},
                   ),
                 ),
-              ),
-            ),
-          ),
-          FractionallySizedBox(
-            widthFactor: 0.33,
-            child: AspectRatio(
-              aspectRatio: 1.0,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: TextButton(
-                    style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.grey
-                            : Colors.white;
-                      }),
-                      backgroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.lightBlue
-                            : Colors.blue;
-                      }),
+                FractionallySizedBox(
+                  widthFactor: 0.33,
+                  child: AspectRatio(
+                    aspectRatio: 1.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: TextButton(
+                          style: ButtonStyle(
+                            foregroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.grey
+                                  : Colors.white;
+                            }),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.lightBlue
+                                  : Colors.blue;
+                            }),
+                          ),
+                          child: const Icon(
+                            Icons.camera,
+                            size: 50,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.camera,
-                      size: 50,
-                    ),
-                    onPressed: () {},
                   ),
                 ),
-              ),
-            ),
-          ),
-          FractionallySizedBox(
-            widthFactor: 0.33,
-            child: AspectRatio(
-              aspectRatio: 1.0,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: TextButton(
-                    style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.grey
-                            : Colors.white;
-                      }),
-                      backgroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.lightBlue
-                            : Colors.blue;
-                      }),
+                FractionallySizedBox(
+                  widthFactor: 0.33,
+                  child: AspectRatio(
+                    aspectRatio: 1.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: TextButton(
+                          style: ButtonStyle(
+                            foregroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.grey
+                                  : Colors.white;
+                            }),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.lightBlue
+                                  : Colors.blue;
+                            }),
+                          ),
+                          child: const Icon(
+                            Icons.camera,
+                            size: 50,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.camera,
-                      size: 50,
-                    ),
-                    onPressed: () {},
                   ),
                 ),
-              ),
-            ),
-          ),
-          FractionallySizedBox(
-            widthFactor: 0.33,
-            child: AspectRatio(
-              aspectRatio: 1.0,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: TextButton(
-                    style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.grey
-                            : Colors.white;
-                      }),
-                      backgroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.lightBlue
-                            : Colors.blue;
-                      }),
+                FractionallySizedBox(
+                  widthFactor: 0.33,
+                  child: AspectRatio(
+                    aspectRatio: 1.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: TextButton(
+                          style: ButtonStyle(
+                            foregroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.grey
+                                  : Colors.white;
+                            }),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.lightBlue
+                                  : Colors.blue;
+                            }),
+                          ),
+                          child: const Icon(
+                            Icons.camera,
+                            size: 50,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.camera,
-                      size: 50,
-                    ),
-                    onPressed: () {},
                   ),
                 ),
-              ),
-            ),
-          ),
-          FractionallySizedBox(
-            widthFactor: 0.33,
-            child: AspectRatio(
-              aspectRatio: 1.0,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: TextButton(
-                    style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.grey
-                            : Colors.white;
-                      }),
-                      backgroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.lightBlue
-                            : Colors.blue;
-                      }),
+                FractionallySizedBox(
+                  widthFactor: 0.33,
+                  child: AspectRatio(
+                    aspectRatio: 1.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: TextButton(
+                          style: ButtonStyle(
+                            foregroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.grey
+                                  : Colors.white;
+                            }),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.lightBlue
+                                  : Colors.blue;
+                            }),
+                          ),
+                          child: const Icon(
+                            Icons.camera,
+                            size: 50,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.camera,
-                      size: 50,
-                    ),
-                    onPressed: () {},
                   ),
                 ),
-              ),
-            ),
-          ),
-          FractionallySizedBox(
-            widthFactor: 0.33,
-            child: AspectRatio(
-              aspectRatio: 1.0,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: TextButton(
-                    style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.grey
-                            : Colors.white;
-                      }),
-                      backgroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.lightBlue
-                            : Colors.blue;
-                      }),
+                FractionallySizedBox(
+                  widthFactor: 0.33,
+                  child: AspectRatio(
+                    aspectRatio: 1.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: TextButton(
+                          style: ButtonStyle(
+                            foregroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.grey
+                                  : Colors.white;
+                            }),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.lightBlue
+                                  : Colors.blue;
+                            }),
+                          ),
+                          child: const Icon(
+                            Icons.camera,
+                            size: 50,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.camera,
-                      size: 50,
-                    ),
-                    onPressed: () {},
                   ),
                 ),
-              ),
-            ),
-          ),
-          FractionallySizedBox(
-            widthFactor: 0.33,
-            child: AspectRatio(
-              aspectRatio: 1.0,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: TextButton(
-                    style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.grey
-                            : Colors.white;
-                      }),
-                      backgroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.lightBlue
-                            : Colors.blue;
-                      }),
+                FractionallySizedBox(
+                  widthFactor: 0.33,
+                  child: AspectRatio(
+                    aspectRatio: 1.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: TextButton(
+                          style: ButtonStyle(
+                            foregroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.grey
+                                  : Colors.white;
+                            }),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.lightBlue
+                                  : Colors.blue;
+                            }),
+                          ),
+                          child: const Icon(
+                            Icons.camera,
+                            size: 50,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.camera,
-                      size: 50,
-                    ),
-                    onPressed: () {},
                   ),
                 ),
-              ),
-            ),
-          ),
-          FractionallySizedBox(
-            widthFactor: 0.33,
-            child: AspectRatio(
-              aspectRatio: 1.0,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: TextButton(
-                    style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.grey
-                            : Colors.white;
-                      }),
-                      backgroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.lightBlue
-                            : Colors.blue;
-                      }),
+                FractionallySizedBox(
+                  widthFactor: 0.33,
+                  child: AspectRatio(
+                    aspectRatio: 1.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: TextButton(
+                          style: ButtonStyle(
+                            foregroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.grey
+                                  : Colors.white;
+                            }),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.lightBlue
+                                  : Colors.blue;
+                            }),
+                          ),
+                          child: const Icon(
+                            Icons.camera,
+                            size: 50,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.camera,
-                      size: 50,
-                    ),
-                    onPressed: () {},
                   ),
                 ),
-              ),
-            ),
-          ),
-          FractionallySizedBox(
-            widthFactor: 0.33,
-            child: AspectRatio(
-              aspectRatio: 1.0,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: TextButton(
-                    style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.grey
-                            : Colors.white;
-                      }),
-                      backgroundColor:
-                          MaterialStateProperty.resolveWith((status) {
-                        return status.contains(MaterialState.pressed)
-                            ? Colors.lightBlue
-                            : Colors.blue;
-                      }),
+                FractionallySizedBox(
+                  widthFactor: 0.33,
+                  child: AspectRatio(
+                    aspectRatio: 1.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: TextButton(
+                          style: ButtonStyle(
+                            foregroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.grey
+                                  : Colors.white;
+                            }),
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith((status) {
+                              return status.contains(MaterialState.pressed)
+                                  ? Colors.lightBlue
+                                  : Colors.blue;
+                            }),
+                          ),
+                          child: const Icon(
+                            Icons.camera,
+                            size: 50,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.camera,
-                      size: 50,
-                    ),
-                    onPressed: () {},
                   ),
                 ),
-              ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 }
