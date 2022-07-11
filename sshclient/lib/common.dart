@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:logger/logger.dart';
+
+class Log {
+  static Logger _logger = Logger(
+    printer: PrefixPrinter(PrettyPrinter()),
+  );
+
+  
+}
 
 class Global {
   static List<CameraDescription> _cameras = <CameraDescription>[];

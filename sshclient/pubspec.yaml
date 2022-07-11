@@ -41,6 +41,10 @@ dependencies:
   camera: ^0.9.8+1
   path: ^1.8.1
   video_player: ^2.4.5
+  flutter_sound: ^9.2.13
+  permission_handler: ^10.0.0
+  audio_session: ^0.1.9
+  logger: ^1.1.0
   
 
 dev_dependencies:
