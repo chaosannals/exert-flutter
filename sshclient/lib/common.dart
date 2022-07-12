@@ -3,11 +3,37 @@ import 'package:camera/camera.dart';
 import 'package:logger/logger.dart';
 
 class Log {
-  static Logger _logger = Logger(
-    printer: PrefixPrinter(PrettyPrinter()),
-  );
+  static Logger? _logger;
 
-  
+  static void v(dynamic message) {
+    _logger!.v(message);
+  }
+
+  static void d(dynamic message) {
+    _logger!.d(message);
+  }
+
+  static void i(dynamic message) {
+    _logger!.i(message);
+  }
+
+  static void w(dynamic message) {
+    _logger!.w(message);
+  }
+
+  static void e(dynamic message) {
+    _logger!.e(message);
+  }
+
+  static void wtf(dynamic message) {
+    _logger!.wtf(message);
+  }
+
+  static void init() {
+    _logger = Logger(
+      printer: PrefixPrinter(PrettyPrinter()),
+    );
+  }
 }
 
 class Global {
@@ -16,13 +42,15 @@ class Global {
 
   static Future init() async {
     try {
+      Log.init();
+      Log.i('global init');
       WidgetsFlutterBinding.ensureInitialized();
       _cameras = await availableCameras();
     } on CameraException catch (e) {
       // _logError(e.code, e.description);
-      print('camera error');
-      print(e.code);
-      print(e.description);
+      Log.e('camera error');
+      Log.e(e.code);
+      Log.e(e.description);
     }
   }
 }
