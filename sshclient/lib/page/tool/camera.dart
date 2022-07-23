@@ -41,14 +41,6 @@ IconData getCameraLensIcon(CameraLensDirection direction) {
   }
 }
 
-void _logError(String code, String? message) {
-  if (message != null) {
-    print('Error: $code\nError Message: $message');
-  } else {
-    print('Error: $code');
-  }
-}
-
 class _CameraExampleHomeState extends State<CameraExampleHome>
     with WidgetsBindingObserver, TickerProviderStateMixin {
   CameraController? controller;
@@ -1071,7 +1063,7 @@ class _CameraExampleHomeState extends State<CameraExampleHome>
   }
 
   void _showCameraException(CameraException e) {
-    _logError(e.code, e.description);
+    Log.e("camera error: ${e.code} ${e.description}");
     showInSnackBar('Error: ${e.code}\n${e.description}');
   }
 }

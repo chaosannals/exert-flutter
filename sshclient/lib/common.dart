@@ -47,10 +47,7 @@ class Global {
       WidgetsFlutterBinding.ensureInitialized();
       _cameras = await availableCameras();
     } on CameraException catch (e) {
-      // _logError(e.code, e.description);
-      Log.e('camera error');
-      Log.e(e.code);
-      Log.e(e.description);
+      Log.e("camera error: ${e.code} ${e.description}");
     }
   }
 }
