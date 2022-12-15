@@ -7,6 +7,11 @@ export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 ```
 
+```pwsh
+$env:PUB_HOSTED_URL="https://pub.flutter-io.cn"
+$env:FLUTTER_STORAGE_BASE_URL="https://storage.flutter-io.cn"
+```
+
 [安卓 gradle 阿里云镜像](https://developer.aliyun.com/mvn/guide)
 
 ```gradle
