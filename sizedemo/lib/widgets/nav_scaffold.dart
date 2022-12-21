@@ -3,7 +3,6 @@ import 'package:sizedemo/pages/gist_page.dart';
 
 import '../page.dart';
 import '../pages/home_page.dart';
-import '../pages/web_page.dart';
 
 class NavScaffold extends StatefulWidget {
   final String title;

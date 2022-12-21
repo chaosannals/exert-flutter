@@ -52,7 +52,7 @@ class _NavScaffoldState extends State<NavScaffold> {
             flex: 1,
             child: IconButton(
               onPressed: () {
-                context.go('/conf');
+                context.goNamed('conf_page');
               },
               icon: const Icon(Icons.settings),
             ),

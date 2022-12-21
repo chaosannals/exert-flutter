@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ssh2client/pages/conf_page.dart';
+import 'package:ssh2client/pages/conf/conf_page.dart';
+import 'package:ssh2client/pages/conf/project_conf_page.dart';
+import 'package:ssh2client/pages/conf/ssh_conf_page.dart';
 import 'package:ssh2client/pages/home_page.dart';
 import 'package:ssh2client/pages/star_page.dart';
 
@@ -10,33 +12,59 @@ void main() async {
   runApp(const MyApp());
 }
 
-
+Page<dynamic> Function(BuildContext, GoRouterState) _buildPage(
+    Widget child
+) {
+  return (context, state) {
+    return CustomTransitionPage(
+      key: state.pageKey,
+      child: child,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return FadeTransition(opacity: animation, child: child);
+      },
+    );
+  };
+}
 
 final GoRouter _router = GoRouter(
   routes: [
     GoRoute(
+      name: 'home_page',
       path: '/',
-      builder: (context, state) {
-        return const HomePage();
-      },
+      pageBuilder: _buildPage(const HomePage()),
       routes: [
         GoRoute(
+            name: 'conf_page',
             path: 'conf',
-            pageBuilder: (context, state) {
-              return CustomTransitionPage(
-                key: state.pageKey,
-                child: const ConfPage(),
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(opacity: animation, child: child);
+            pageBuilder: _buildPage(const ConfPage()),
+            routes: [
+              GoRoute(
+                name: 'conf_project_page',
+                path: 'project',
+                pageBuilder: (context, state) {
+                  return CustomTransitionPage(
+                    key: state.pageKey,
+                    child: const ProjectConfPage(
+                      // id: state.queryParams['id'],
+                      id: 1,
+                    ),
+                    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(opacity: animation, child: child);
+                    },
+                  );
                 },
-              );
-            }),
+              ),
+              GoRoute(
+                name: 'conf_ssh_page',
+                path: 'ssh',
+                pageBuilder: _buildPage(const SshConfPage()),
+              ),
+            ]
+        ),
         GoRoute(
+          name: 'star_page',
           path: 'star',
-          builder: (context, state) {
-            return const StarPage();
-          },
+          pageBuilder: _buildPage(const StarPage()),
         ),
       ],
     ),
