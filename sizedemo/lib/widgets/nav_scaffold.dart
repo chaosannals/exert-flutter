@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizedemo/pages/gist_page.dart';
 
+import '../page.dart';
 import '../pages/home_page.dart';
 import '../pages/web_page.dart';
 
@@ -32,7 +33,7 @@ class _NavScaffoldState extends State<NavScaffold> {
             child: IconButton(
               onPressed: () async {
                 await Navigator.push(context,
-                    MaterialPageRoute(builder: (context) {
+                    MyRoute(builder: (context) {
                   return const GistPage();
                 }));
               },
@@ -43,10 +44,8 @@ class _NavScaffoldState extends State<NavScaffold> {
             flex: 1,
             child: IconButton(
               onPressed: () async {
-                await Navigator.push(context,
-                    MaterialPageRoute(builder: (context) {
-                  return const HomePage();
-                }));
+                await Navigator.push(
+                    context, MyRoute(builder: (context) => const HomePage()));
               },
               icon: const Icon(Icons.home),
             ),
@@ -55,10 +54,7 @@ class _NavScaffoldState extends State<NavScaffold> {
             flex: 1,
             child: IconButton(
               onPressed: () async {
-                await Navigator.push(context,
-                    MaterialPageRoute(builder: (context) {
-                  return const WebPage();
-                }));
+                await Navigator.pushNamed(context, '/web');
               },
               icon: const Icon(Icons.network_cell),
             ),
