@@ -37,6 +37,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_screenutil: ^5.6.0
+  go_router: ^6.0.0
   # screen_autosize: ^0.0.1+2 # 这个可能因为一直没更新，不能用。
 
 dev_dependencies:
