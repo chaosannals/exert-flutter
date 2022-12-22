@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ssh2client/page_route.dart';
 import 'package:ssh2client/widgets/nav_scaffold.dart';
 
 class ConfPage extends StatefulWidget {
@@ -26,17 +27,17 @@ class _ConfPageState extends State<ConfPage> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        context.goNamed(
-                          'conf_project_page',
-                          queryParams: { 'id': '1', },
-                        );
+                        // context.goNamed(
+                        //   'conf_project_page',
+                        //   queryParams: { 'id': '1', },
+                        // );
+                        const ProjectConfPageRoute(id: 1)
+                          .go(context);
                       },
                       child: const Text("编辑"),
                     ),
                     TextButton(
-                      onPressed: () {
-                        
-                      },
+                      onPressed: () {},
                       child: const Text("执行"),
                     ),
                   ],

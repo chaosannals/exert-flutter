@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+// import 'package:go_router/go_router.dart';
+import 'package:ssh2client/page_route.dart';
 
 class NavScaffold extends StatefulWidget {
   final String title;
@@ -34,7 +35,8 @@ class _NavScaffoldState extends State<NavScaffold> {
             flex: 1,
             child: IconButton(
               onPressed: () {
-                context.go('/star');
+                // context.go('/star');
+                StarPageRoute().go(context);
               },
               icon: const Icon(Icons.star),
             ),
@@ -43,7 +45,8 @@ class _NavScaffoldState extends State<NavScaffold> {
             flex: 1,
             child: IconButton(
               onPressed: () {
-                context.go('/');
+                // context.go('/');
+                HomePageRoute().go(context);
               },
               icon: const Icon(Icons.home),
             ),
@@ -52,7 +55,8 @@ class _NavScaffoldState extends State<NavScaffold> {
             flex: 1,
             child: IconButton(
               onPressed: () {
-                context.goNamed('conf_page');
+                // context.goNamed('conf_page');
+                ConfPageRoute().go(context);
               },
               icon: const Icon(Icons.settings),
             ),
