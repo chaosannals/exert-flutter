@@ -67,9 +67,11 @@ class ProjectConfPageRoute extends GoRouteData {
 }
 
 class SshConfPageRoute extends GoRouteData {
+  late final int id;
+
   @override
   Page<dynamic> buildPage(BuildContext context, GoRouterState state) {
-    return _buildPage(state, const SshConfPage());
+    return _buildPage(state, SshConfPage(id: id));
   }
 }
 

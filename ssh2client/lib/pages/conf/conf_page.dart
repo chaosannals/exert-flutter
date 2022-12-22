@@ -31,13 +31,16 @@ class _ConfPageState extends State<ConfPage> {
                         //   'conf_project_page',
                         //   queryParams: { 'id': '1', },
                         // );
-                        const ProjectConfPageRoute(id: 1)
-                          .go(context);
+                        const ProjectConfPageRoute(id: 1).go(context);
                       },
                       child: const Text("编辑"),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        final r = SshConfPageRoute();
+                        r.id = 1;
+                        r.go(context);
+                      },
                       child: const Text("执行"),
                     ),
                   ],

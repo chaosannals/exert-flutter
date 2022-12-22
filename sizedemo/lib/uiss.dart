@@ -52,8 +52,19 @@ class Adapt {
 
     return null;
   }
+}
 
-  static pt(size) {
-    return size * Adapt.ratio;
+extension NumUnit on num {
+  // 与 designWidth 对应的单位。
+  double toUnit() {
+    return this * Adapt.ratio;
   }
+
+  double get unit => this * Adapt.ratio;
+
+  int toIntUnit() {
+    return (this * Adapt.ratio).round();
+  }
+
+  int get intUnit => (this * Adapt.ratio).round();
 }
