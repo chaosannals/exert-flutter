@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ssh2client/page_route.dart';
+import 'package:ssh2client/pages/error_page.dart';
 // import 'package:ssh2client/pages/conf/conf_page.dart';
 // import 'package:ssh2client/pages/conf/project_conf_page.dart';
 // import 'package:ssh2client/pages/conf/ssh_conf_page.dart';
@@ -29,6 +30,13 @@ void main() async {
 
 final GoRouter _router = GoRouter(
   routes: $appRoutes,
+  errorPageBuilder: (context, state) => CustomTransitionPage(
+    key: state.pageKey,
+    child: ErrorPage(error: state.error),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(opacity: animation, child: child);
+    },
+  ),
   // routes: [
   //   GoRoute(
   //     name: 'home_page',
