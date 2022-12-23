@@ -88,8 +88,13 @@ $env:HTTPS_PROXY="https://127.0.0.1:1088"
 # 更新
 flutter upgrade
 
-# 创建项目
+# 创建项目不指定平台为全平台（早期版本为无，需要手动添加）
 flutter create app_name
+# 给当前项目添加指定平台，最后 . 是当前路径。
+flutter create --platforms=windows,macos,linux .
+
+# 创建时指定平台
+flutter create --platforms=windows,macos,linux app_name
 ```
 
 ```bash
