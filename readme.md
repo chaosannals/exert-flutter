@@ -104,6 +104,12 @@ flutter run
 # 添加库 dartssh2
 flutter pub add dartssh2
 
+# 添加开发库 build_runner
+flutter pub add -d build_runner
+
+# 拉库
+flutter pub get
+
 # 更新库
 flutter pub update
 ```
