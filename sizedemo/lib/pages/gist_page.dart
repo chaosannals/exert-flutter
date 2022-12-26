@@ -14,8 +14,22 @@ class _GistPageState extends State<GistPage> {
   Widget build(BuildContext context) {
     return NavScaffold(
       title: '概览',
-      body: Column(),
+      body: Column(
+        children: [
+          TextButton(
+            onPressed: () async {
+              await Navigator.pushNamed(context, '/cloud');
+            },
+            child: const Text("Cloud"),
+          ),
+          TextButton(
+            onPressed: () async {
+              await Navigator.pushNamed(context, '/circle');
+            },
+            child: const Text("Circle"),
+          ),
+        ],
+      ),
     );
   }
 }
-

@@ -118,3 +118,17 @@ flutter pub get
 # 更新库
 flutter pub update
 ```
+
+## 配置
+
+local.properties 和 android/local.properties 可以配置一些编译时的属性。（之前可以，之后升级 Flutter 作废了，直接改 build.gradle 文件）
+
+```ini
+sdk.dir=C:\\Android\\SDK
+flutter.sdk=D:\\Flutter
+flutter.minSdkVersion=21
+flutter.targetSdkVersion=33
+flutter.ndkVersion=21.0.6011959
+flutter.versionCode=1
+flutter.versionName=1.0.0
+```

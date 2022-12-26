@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sizedemo/page.dart';
+import 'package:sizedemo/pages/circle_page.dart';
+import 'package:sizedemo/pages/cloud_page.dart';
 import 'package:sizedemo/pages/gist_page.dart';
 import 'package:sizedemo/pages/home_page.dart';
 import 'package:sizedemo/pages/web_page.dart';
@@ -28,6 +29,8 @@ class _MyAppState extends State<MyApp> {
         '/': (context) => const HomePage(),
         '/gist': (context) => const GistPage(),
         '/web': (context) => const WebPage(),
+        '/cloud': (context) => const CloudPage(),
+        '/circle': (context) => const CirclePage(),
       },
     );
   }
