@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ssh2client/page_route.dart';
@@ -11,6 +12,11 @@ import 'package:ssh2client/pages/home_page.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
+  // 安卓透明状态栏，默认一般是黑色半透明。
+  // Flutter 在沒有 appbar 的情況下绘制区包含状态栏下。padding = zero 解决。
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
   runApp(const MyApp());
 }
 
