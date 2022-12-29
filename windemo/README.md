@@ -1,16 +1,11 @@
-﻿# windemo
+﻿# windows demo
 
-注：Windows 项目 VS编译 UTF8 必须带 BOM 不然乱码。
+注：Windows 项目 VS编译 UTF8 必须带 BOM 不然乱码。（新版好想不会出现此类问题。）
 
-## Getting Started
+```bash
+# 全局安装构建工具。
+flutter pub global activate build_runner
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# 生成
+flutter pub run build_runner build
+```
