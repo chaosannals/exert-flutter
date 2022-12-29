@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:windemo/widgets/nav_scaffold.dart';
 
 class ErrorPage extends StatefulWidget {
   final Exception? error;
