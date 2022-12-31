@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:windemo/page_routes.dart';
 
 class NavScaffold extends StatefulWidget {
   final String title;
@@ -17,7 +19,34 @@ class _NavScaffoldState extends State<NavScaffold> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: widget.body,
+      body: Row(
+        children: [
+          Container(
+            width: 100.w,
+            color: Colors.cyan,
+            child: Column(
+              children: [
+                GestureDetector(
+                  child: const Text("首页"),
+                  onTap: () {
+                    HomePageRoute().go(context);
+                  },
+                ),
+                GestureDetector(
+                  child: const Text("动画"),
+                  onTap: () {
+                    AnimationListPageRoute().go(context);
+                  },
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: widget.body,
+          )
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         tooltip: 'ball',
