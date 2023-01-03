@@ -7,6 +7,8 @@ import 'package:windemo/pages/anima/list_page.dart';
 import 'package:windemo/pages/home_page.dart';
 import 'package:windemo/pages/layout/demo_1_page.dart';
 import 'package:windemo/pages/layout/demo_2_page.dart';
+import 'package:windemo/pages/layout/demo_3_page.dart';
+import 'package:windemo/pages/layout/demo_4_page.dart';
 import 'package:windemo/pages/layout/list_page.dart';
 
 part 'page_routes.g.dart';
@@ -29,6 +31,8 @@ Page<dynamic> _buildPage(GoRouterState state, Widget child) {
       routes: [
         TypedGoRoute<LayoutDemo1PageRoute>(path: '1'),
         TypedGoRoute<LayoutDemo2PageRoute>(path: '2'),
+        TypedGoRoute<LayoutDemo3PageRoute>(path: '3'),
+        TypedGoRoute<LayoutDemo4PageRoute>(path: '4'),
       ],
     ),
     TypedGoRoute<AnimationListPageRoute>(
@@ -72,6 +76,20 @@ class LayoutDemo2PageRoute extends GoRouteData {
   @override
   Page<dynamic> buildPage(BuildContext context, GoRouterState state) {
     return _buildPage(state, const LayoutDemo2Page());
+  }
+}
+
+class LayoutDemo3PageRoute extends GoRouteData {
+  @override
+  Page<dynamic> buildPage(BuildContext context, GoRouterState state) {
+    return _buildPage(state, const LayoutDemo3Page());
+  }
+}
+
+class LayoutDemo4PageRoute extends GoRouteData {
+  @override
+  Page<dynamic> buildPage(BuildContext context, GoRouterState state) {
+    return _buildPage(state, const LayoutDemo4Page());
   }
 }
 
