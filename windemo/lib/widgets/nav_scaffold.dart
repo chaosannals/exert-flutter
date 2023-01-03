@@ -33,6 +33,12 @@ class _NavScaffoldState extends State<NavScaffold> {
                   },
                 ),
                 GestureDetector(
+                  child: const Text("布局"),
+                  onTap: () {
+                    LayoutDemoListPageRoute().go(context);
+                  },
+                ),
+                GestureDetector(
                   child: const Text("动画"),
                   onTap: () {
                     AnimationListPageRoute().go(context);
