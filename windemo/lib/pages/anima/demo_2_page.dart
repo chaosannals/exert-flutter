@@ -42,9 +42,12 @@ class _AnimaDemo2PageState extends State<AnimaDemo2Page>
       vsync: this,
     );
     ani = Tween(begin: 0.0, end: 140.0).animate(aniController);
-    ani.addListener(() {
-      setState(() {});
-    });
+
+    // AnimationWeight 和 AnimationBuild 都不需要在外部添加此项。
+    // 继承的时候已经封装了。
+    // ani.addListener(() {
+    //   setState(() {});
+    // });
 
     // 开启动画
     aniController.forward();

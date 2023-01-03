@@ -27,6 +27,12 @@ class _AnimationListPageState extends State<AnimationListPage> {
             },
             child: const Text("示例 2"),
           ),
+          ElevatedButton(
+            onPressed: () {
+              AnimaDemo3PageRoute().go(context);
+            },
+            child: const Text("示例 3"),
+          ),
         ],
       ),
     );
