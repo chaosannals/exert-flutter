@@ -10,6 +10,38 @@ class LayoutDemo4Page extends StatefulWidget {
 }
 
 class _LayoutDemo4PageState extends State<LayoutDemo4Page> {
+  final _numbers = List<int>.generate(10, (i) => i + 1);
+  final _controller = ScrollController();
+  var isShowTag = false;
+
+  void _loadNumbers() {
+    Future.delayed(const Duration(seconds: 1)).then((e) {
+      setState(() {
+        _numbers.insertAll(
+          _numbers.length - 1,
+          List<int>.generate(10, (i) => i + 1).toList(),
+        );
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadNumbers();
+    _controller.addListener(() {
+      if (_controller.offset < 400.h && isShowTag) {
+        setState(() {
+          isShowTag = false;
+        });
+      } else if (_controller.offset >= 400.h && !isShowTag) {
+        setState(() {
+          isShowTag = true;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return NavScaffold(
@@ -18,10 +50,13 @@ class _LayoutDemo4PageState extends State<LayoutDemo4Page> {
           Expanded(
             flex: 1,
             child: ListView.builder(
+              // prototypeItem itemExtent 二选一
+              prototypeItem: const Text("111"), // 用来测算单项大小的原型组件。
+              // itemExtent: 50.0, // 直接指定高度，这个写死了，用 prototypeItem 可以测算。
               itemCount: 100,
-              itemExtent: 50.0,
+              controller: _controller,
               itemBuilder: (context, index) {
-                return Text("no: $index");
+                return Text("${isShowTag ? '!!!!' : ''} no: $index");
               },
             ),
           ),
@@ -35,6 +70,21 @@ class _LayoutDemo4PageState extends State<LayoutDemo4Page> {
                   textScaleFactor: 2.0,
                 );
               }).toList(),
+            ),
+          ),
+          Expanded(
+            child: ListView.separated(
+              itemBuilder: (context, i) {
+                var tail = _numbers.length - 1;
+                if (i == tail) {
+                  _loadNumbers();
+                }
+                return Text("no: $i => ${_numbers[i]}");
+              },
+              separatorBuilder: (context, i) {
+                return Divider(color: i % 2 == 0 ? Colors.blue : Colors.red);
+              },
+              itemCount: _numbers.length,
             ),
           ),
         ],
