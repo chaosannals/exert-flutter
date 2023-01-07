@@ -13,6 +13,7 @@ class _LayoutDemo4PageState extends State<LayoutDemo4Page> {
   final _numbers = List<int>.generate(10, (i) => i + 1);
   final _controller = ScrollController();
   var isShowTag = false;
+  var _process = 0.0;
 
   void _loadNumbers() {
     Future.delayed(const Duration(seconds: 1)).then((e) {
@@ -47,6 +48,7 @@ class _LayoutDemo4PageState extends State<LayoutDemo4Page> {
     return NavScaffold(
       body: Row(
         children: [
+          // builder 示例
           Expanded(
             flex: 1,
             child: ListView.builder(
@@ -60,6 +62,7 @@ class _LayoutDemo4PageState extends State<LayoutDemo4Page> {
               },
             ),
           ),
+          // children 示例
           Expanded(
             child: ListView(
               shrinkWrap: true,
@@ -72,6 +75,7 @@ class _LayoutDemo4PageState extends State<LayoutDemo4Page> {
               }).toList(),
             ),
           ),
+          // 间隔示例
           Expanded(
             child: ListView.separated(
               itemBuilder: (context, i) {
@@ -86,6 +90,34 @@ class _LayoutDemo4PageState extends State<LayoutDemo4Page> {
               },
               itemCount: _numbers.length,
             ),
+          ),
+          // 监听示例
+          Expanded(
+            child: NotificationListener<ScrollNotification>(
+                onNotification: (ScrollNotification notification) {
+                  setState(() {
+                    _process = notification.metrics.pixels /
+                        notification.metrics.maxScrollExtent;
+                  });
+                  return false; // 如果为 true 进度条失效。
+                },
+                child: Column(
+                  children: [
+                    Text("$_process"),
+                    Expanded(
+                      child: ListView(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.all(10.w),
+                        children: List<int>.generate(100, (i) => i + 1).map((i) {
+                          return Text(
+                            "No: $i",
+                            textScaleFactor: 2.0,
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ],
+                )),
           ),
         ],
       ),
