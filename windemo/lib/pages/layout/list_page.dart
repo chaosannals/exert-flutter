@@ -45,6 +45,12 @@ class _LayoutDemoListPageState extends State<LayoutDemoListPage> {
             },
             child: const Text("示例 5"),
           ),
+          ElevatedButton(
+            onPressed: () {
+              LayoutDemo6PageRoute().go(context);
+            },
+            child: const Text("示例 6"),
+          ),
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:windemo/widgets/nav_scaffold.dart';
 
 class LayoutDemo5Page extends StatefulWidget {
@@ -12,6 +13,7 @@ class _LayoutDemo5PageState extends State<LayoutDemo5Page> {
   final globalKey = GlobalKey<AnimatedListState>();
   final _words = <String>[];
   var counter = 4;
+  var gridCount = 4;
 
   @override
   void initState() {
@@ -26,29 +28,97 @@ class _LayoutDemo5PageState extends State<LayoutDemo5Page> {
     return NavScaffold(
       body: Row(
         children: [
+          // AnimatedList 示例
           Expanded(
-              child: Column(
-            children: [
-              IconButton(
-                onPressed: () => onAdd(),
-                icon: const Icon(Icons.add),
-              ),
-              Expanded(
-                child: AnimatedList(
-                  key: globalKey,
-                  initialItemCount: _words.length,
-                  // 每次删除或添加时，所有剩余组件都会被调用一次此方法。
-                  itemBuilder: (BuildContext context, int index,
-                      Animation<double> animation) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: buildItem(context, index),
-                    );
-                  },
+            child: Column(
+              children: [
+                IconButton(
+                  onPressed: () => onAdd(),
+                  icon: const Icon(Icons.add),
                 ),
+                Expanded(
+                  child: AnimatedList(
+                    key: globalKey,
+                    initialItemCount: _words.length,
+                    // 每次删除或添加时，所有剩余组件都会被调用一次此方法。
+                    itemBuilder: (BuildContext context, int index,
+                        Animation<double> animation) {
+                      return FadeTransition(
+                        opacity: animation,
+                        child: buildItem(context, index),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // GridView 示例
+          Expanded(
+            child: GridView(
+              // 也可用 GridView.count(...) 方法
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                childAspectRatio: 1.0,
               ),
-            ],
-          )),
+              children: const [
+                Icon(Icons.ac_unit),
+                Icon(Icons.airport_shuttle),
+                Icon(Icons.all_inclusive),
+                Icon(Icons.beach_access),
+                Icon(Icons.cake),
+                Icon(Icons.free_breakfast)
+              ],
+            ),
+          ),
+          Expanded(
+            child: GridView(
+              // 也可用 GridView.extent(...) 方法
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 40.w,
+                childAspectRatio: 2.0,
+              ),
+              children: const [
+                Icon(Icons.ac_unit),
+                Icon(Icons.airport_shuttle),
+                Icon(Icons.all_inclusive),
+                Icon(Icons.beach_access),
+                Icon(Icons.cake),
+                Icon(Icons.free_breakfast)
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () => setState(() => gridCount++),
+                      icon: const Icon(Icons.plus_one),
+                    ),
+                    IconButton(
+                      onPressed: () => setState(() => gridCount--),
+                      icon: const Icon(Icons.delete),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 40.w,
+                      childAspectRatio: 2.0,
+                    ),
+                    itemCount: gridCount,
+                    itemBuilder: (context, index) {
+                      return Text("$index");
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -81,7 +151,8 @@ class _LayoutDemo5PageState extends State<LayoutDemo5Page> {
   void onRemove(BuildContext context, int index) {
     setState(() {
       globalKey.currentState!.removeItem(index, (context, animation) {
-        var item = buildItem(context, index); // 生成一个用于显示的组件（查了数组，所以要先于下一行的 removeAt）。
+        var item =
+            buildItem(context, index); // 生成一个用于显示的组件（查了数组，所以要先于下一行的 removeAt）。
         _words.removeAt(index);
         return FadeTransition(
           opacity: CurvedAnimation(
