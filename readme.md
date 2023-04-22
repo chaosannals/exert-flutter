@@ -144,3 +144,14 @@ flutter.ndkVersion=21.0.6011959
 flutter.versionCode=1
 flutter.versionName=1.0.0
 ```
+
+
+## 嵌入安卓方式
+
+### aar
+
+```bash
+# 打包成 aar
+flutter build aar
+
+```
