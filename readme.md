@@ -57,6 +57,8 @@ allprojects {
 
 下载开发包，解压后把目录下的 bin 目录加到 Path 路径里面。
 
+注：Flutter 依赖 Git 有时因为高版本的 Git 有安全目录限制，导致 git 无法使用，加入安全目录 >git config --global --add safe.directory <flutter_dir> (重装系统后，使用旧 git 目录，会出现安全目录问题。)
+
 ```bash
 # 检查 flutter 安装的情况
 flutter doctor
