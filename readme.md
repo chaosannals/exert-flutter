@@ -55,7 +55,17 @@ allprojects {
 
 参考 [官网](https://flutter.dev/docs/get-started/install)
 
-下载开发包，解压后把目录下的 bin 目录加到 Path 路径里面。
+下载开发包，解压后把目录下的 bin 目录加到 Path 路径里面。（不推荐）
+
+推荐使用 git 而不是 下载包，除非被墙得严重，下载包是网盘之类拿到得。
+
+```bash
+# 升级
+flutter upgrade
+
+# 主线，一般都是主线，可以到最新，除非旧项目需要指定版本，也是通过次命令切换，而不是 git 
+flutter channel master
+```
 
 注：Flutter 依赖 Git 有时因为高版本的 Git 有安全目录限制，导致 git 无法使用，加入安全目录 >git config --global --add safe.directory <flutter_dir> (重装系统后，使用旧 git 目录，会出现安全目录问题。)
 
