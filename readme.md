@@ -155,3 +155,23 @@ flutter.versionName=1.0.0
 flutter build aar
 
 ```
+
+## 常见问题
+
+### 高版本 flutter ，dart sound null safety 问题。
+
+```yaml
+# 限制 SDK
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+```
+
+```bash
+# 会让 dart 版本在使用范围内。
+dart pub get
+```
+
+```bash
+# 这样降低版本后 --no-sound-null-safety 就有了这个参数，高版本这个被移除了。
+flutter run --no-sound-null-safety
+```
