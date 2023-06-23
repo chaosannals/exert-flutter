@@ -10,9 +10,9 @@ class FormDemo1Page extends StatefulWidget {
 }
 
 class _FormDemo1PageState extends State<FormDemo1Page> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _passController = TextEditingController();
-  GlobalKey _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
+  final GlobalKey _formKey = GlobalKey<FormState>();
   String validResult = "";
 
   @override
