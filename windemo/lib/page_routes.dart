@@ -4,6 +4,8 @@ import 'package:windemo/pages/anima/demo_1_page.dart';
 import 'package:windemo/pages/anima/demo_2_page.dart';
 import 'package:windemo/pages/anima/demo_3.page.dart';
 import 'package:windemo/pages/anima/list_page.dart';
+import 'package:windemo/pages/form/demo_1_page.dart';
+import 'package:windemo/pages/form/list_page.dart';
 import 'package:windemo/pages/home_page.dart';
 import 'package:windemo/pages/layout/demo_1_page.dart';
 import 'package:windemo/pages/layout/demo_2_page.dart';
@@ -52,7 +54,15 @@ Page<dynamic> _buildPage(GoRouterState state, Widget child) {
           path: '3',
         ),
       ],
-    )
+    ),
+    TypedGoRoute<FormListPageRoute>(
+      path: 'form',
+      routes: [
+        TypedGoRoute<FormDemo1PageRoute>(
+          path: '1',
+        ),
+      ],
+    ),
   ],
 )
 class HomePageRoute extends GoRouteData {
@@ -62,6 +72,7 @@ class HomePageRoute extends GoRouteData {
   }
 }
 
+////////////////////////////////////////////////////////////////////////////
 class LayoutDemoListPageRoute extends GoRouteData {
   @override
   Page<dynamic> buildPage(BuildContext context, GoRouterState state) {
@@ -111,6 +122,7 @@ class LayoutDemo6PageRoute extends GoRouteData {
   }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 class AnimationListPageRoute extends GoRouteData {
   @override
   Page<dynamic> buildPage(BuildContext context, GoRouterState state) {
@@ -136,5 +148,20 @@ class AnimaDemo3PageRoute extends GoRouteData {
   @override
   Page<dynamic> buildPage(BuildContext context, GoRouterState state) {
     return _buildPage(state, const AnimaDemo3Page());
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////
+class FormListPageRoute extends GoRouteData {
+  @override
+  Page<dynamic> buildPage(BuildContext context, GoRouterState state) {
+    return _buildPage(state, const FormListPage());
+  }
+}
+
+class FormDemo1PageRoute extends GoRouteData {
+  @override
+  Page<dynamic> buildPage(BuildContext context, GoRouterState state) {
+    return _buildPage(state, const FormDemo1Page());
   }
 }
