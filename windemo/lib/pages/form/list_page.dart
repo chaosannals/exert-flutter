@@ -20,7 +20,19 @@ class _FormListPageState extends State<FormListPage> {
             onPressed: () {
               FormDemo1PageRoute().go(context);
             },
-            child: const Text("示例 1"),
+            child: const Text("示例 1（集成度比较高的 material TextFormField）"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              FormDemo2PageRoute().go(context);
+            },
+            child: const Text("示例 2（集成度低的 widgets 的 EditableText 和自定义输入框）"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              FormDemo3PageRoute().go(context);
+            },
+            child: const Text("示例 3(没有 Form 只是孤立的输入框)"),
           ),
         ],
       ),
