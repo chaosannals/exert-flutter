@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class FormStringField extends FormField<String> {
   FormStringField({
     super.key,
+    super.onSaved,
+    super.validator,
     required TextEditingController controller,
     required TextStyle style,
   }) : super(
@@ -11,7 +13,7 @@ class FormStringField extends FormField<String> {
             FormStringFieldState s = state as FormStringFieldState;
             return Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFF00000)),
+                border: Border.all(color: const Color(0xFF00000)),
                 borderRadius: BorderRadius.all(Radius.circular(1.w)),
               ),
               padding: EdgeInsets.all(4.w),
@@ -34,4 +36,10 @@ class FormStringFieldState extends FormFieldState<String> {
   FocusNode focusNode = FocusNode();
   Color cursorColor = const Color(0xFF4499FF);
   Color backgroundCursorColor = const Color(0xFF000000);
+
+  @override
+  void dispose() {
+    focusNode.dispose();
+    super.dispose();
+  }
 }
