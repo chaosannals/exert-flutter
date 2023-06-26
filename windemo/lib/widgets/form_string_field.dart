@@ -11,6 +11,7 @@ class FormStringField extends FormField<String> {
   }) : super(
           builder: (state) {
             FormStringFieldState s = state as FormStringFieldState;
+            
             return Container(
               decoration: BoxDecoration(
                 border: Border.all(color: const Color(0xFF00000)),
@@ -32,6 +33,8 @@ class FormStringField extends FormField<String> {
   FormFieldState<String> createState() => FormStringFieldState();
 }
 
+// 需要通过 setValue 在各种周期里传递 controller 的值。
+// 不然与值相关的验证会只能拿到空值。
 class FormStringFieldState extends FormFieldState<String> {
   FocusNode focusNode = FocusNode();
   Color cursorColor = const Color(0xFF4499FF);
